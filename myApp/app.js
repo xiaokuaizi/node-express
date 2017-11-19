@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var hbs = require('express-hbs');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -21,6 +22,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var viewsPath = path.join(__dirname, './views');
+
+app.engine('hbs', hbs.express3({
+  viewsDir    : viewsPath,
+  partialsDir : path.join(viewsPath, 'partials'),
+  layoutsDir  : path.join(viewsPath, 'layouts')
+}));
+
+app.set('view engine', 'hbs');
+app.set('views', viewsPath);
 
 app.use('/', index);
 app.use('/users', users);
