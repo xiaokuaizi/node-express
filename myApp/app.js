@@ -26,9 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var viewsPath = path.join(__dirname, './views');
 
 app.engine('hbs', hbs.express3({
-  viewsDir    : viewsPath,
-  partialsDir : path.join(viewsPath, 'partials'),
-  layoutsDir  : path.join(viewsPath, 'layouts')
+  viewsDir    : viewsPath
 }));
 
 app.set('view engine', 'hbs');
@@ -52,7 +50,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error',{title:"错误页"});
 });
 
 module.exports = app;
