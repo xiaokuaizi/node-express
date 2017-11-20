@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '首页',navList:[{
+  res.render('about', { title: '关于',navList:[{
     txt: '首页',
     path: '/'
   },{

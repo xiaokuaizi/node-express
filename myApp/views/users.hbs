@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-</head>
-<body>
-    <h1>{{content}}</h1>
-</body>
-</html>
+{{!< myapp}}
+{{#if id}}
+    <p>这是一个用户界面，此用户名字为： {{id}}</p>
+{{else}}  
+    <h4>用户列表:</h4>
+    <ul class="userList">
+        {{#each userList}}
+            <li>用户：{{userName}}，<a href="users/{{id}}">点击查看用户</a></li>
+        {{/each}}
+    </ul>
+{{/if}}

@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var about = require('./routes/about');
 var app = express();
 
 // view engine setup
@@ -24,9 +24,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var viewsPath = path.join(__dirname, './views');
-
+var partialsPath = path.join(__dirname, './partials');
+var layoutsPath = path.join(__dirname, './layouts');
 app.engine('hbs', hbs.express3({
-  viewsDir    : viewsPath
+  viewsDir    : viewsPath,
+  layoutsDir  : layoutsPath,
+  partialsDir  : partialsPath
 }));
 
 app.set('view engine', 'hbs');
@@ -34,7 +37,7 @@ app.set('views', viewsPath);
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/about', about);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
