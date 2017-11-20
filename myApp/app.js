@@ -26,14 +26,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 var viewsPath = path.join(__dirname, './views');
 var partialsPath = path.join(__dirname, './partials');
 var layoutsPath = path.join(__dirname, './layouts');
-app.engine('hbs', hbs.express3({
-  viewsDir    : viewsPath,
+
+//注册模板引擎
+app.engine('hbs', hbs.express3({  
+  viewsDir    : viewsPath,  //模板文件的路径
   layoutsDir  : layoutsPath,
   partialsDir  : partialsPath
 }));
 
-app.set('view engine', 'hbs');
-app.set('views', viewsPath);
+app.set('view engine', 'hbs');  //使用什么模版引擎
+app.set('views', viewsPath);  //模版文件放在哪里
 
 app.use('/', index);
 app.use('/users', users);
